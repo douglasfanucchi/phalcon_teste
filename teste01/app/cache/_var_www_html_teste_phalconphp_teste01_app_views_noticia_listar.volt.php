@@ -84,45 +84,59 @@
             <?= $this->flash->output(true) ?>
 
             
-
-        <div id="cadastro_ticket" class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="glyphicon glyphicon-plus"></i>
-                        &nbsp;Cadatrar Notícia
-                    </div>
-                    <?= $this->tag->form(['noticias/salvar', 'method' => 'post', 'enctype' => 'multipart/form-data', 'name' => 'cadastrar']) ?>
-                        <div class="panel-body">
-                            <div class="col-md-12"  id="conteudo">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="form-group col-sm-12">
-                                                <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <?= $this->tag->textField(['titulo', 'width' => '100%', 'class' => 'form-control']) ?>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="form-group col-sm-12">
-                                                <label for ="Texto">Texto</label>
-                                                <?= $this->tag->textArea(['texto', 'class' => 'form-control tinymce-editor']) ?>
-                                            </div>
+            <div class="row">
+                <div class="col-md-12" id="conteudo">
+                    <!-- <div class="col-md-6 col-sm-6"> -->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <!-- <a href="#" class="pull-right">View all</a> -->
+                                <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+                                &nbsp;Notícias
+                                <form class="navbar-form navbar-right" id="search_ticket" role="search">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                            <input id="dataTableSearch" type="text" class="form-control" placeholder="Search">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row" style="text-align:right;">
-                                    <div id="buttons-cadastro" class="col-md-12">
-                                        <a href="<?= $this->url->get(['for' => 'noticia.lista']) ?>" class="btn btn-default">Cancelar</a>
-                                        <?= $this->tag->submitButton(['Gravar', 'class' => 'btn btn-primary']) ?>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
+                            <div class="panel-body">
+                                <div class="col-md-12">
+                                    <a id="button-abrir-ticket" href="<?= $this->url->get(['for' => 'noticia.cadastrar']) ?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Nova Noticia</a>
+                                    
+                                </div>
+								<table id="lista-noticia" class="table dataTable table-hover">
+									<thead>
+										<tr>
+											<td>Cod</td>
+											<td>Titulo</td>
+											<td>Texto</td>
+											<td>Ações</td>
+										</tr>
+									</thead>
+									<tbody>
+                                        <?php foreach ($noticias as $noticia) { ?>
+										<tr>
+                                            <td><a href="#">#<?= $noticia->id ?></a></td>
+                                            <td class="titulo"><?= $noticia->titulo ?></td>
+                                            <td class="text-center"><?= $noticia->texto ?></td>
+                                            <td>
+                                                <a href="<?= $this->url->get(['for' => 'noticia.editar', 'id' => $noticia->id]) ?>">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+                                                <a href="<?= $this->url->get(['for' => 'noticia.excluir', 'id' => $noticia->id]) ?>">
+                                                    <span class="glyphicon glyphicon-remove-sign"></span>
+                                                </a>
+                                            </td>
+										</tr>
+                                        <?php } ?>
+									</tbody>
+								</table>
+                            </div><!-- panel-body -->
                         </div>
-                    <?= $this->tag->endForm() ?>
                 </div>
-            </div>
-        </div><!-- row -->
+            </div><!-- row -->
 
     
 
@@ -154,12 +168,16 @@
         </script>
 		
         
+
         <script>
+
             $(document).ready(function(){
 
-
+                
             });
         </script>
+
+
     
 
 	</body>

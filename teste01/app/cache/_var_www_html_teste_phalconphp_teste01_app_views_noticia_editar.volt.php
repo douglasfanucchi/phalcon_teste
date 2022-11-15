@@ -90,25 +90,33 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="glyphicon glyphicon-plus"></i>
-                        &nbsp;Cadatrar Notícia
+                        &nbsp;Editar Noticia
                     </div>
                     <?= $this->tag->form(['noticias/salvar', 'method' => 'post', 'enctype' => 'multipart/form-data', 'name' => 'cadastrar']) ?>
+                        
                         <div class="panel-body">
                             <div class="col-md-12"  id="conteudo">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="form-group col-sm-12">
+                                                <p><strong>Data de Criação:</strong> <?= $noticia->data_cadastro ?></p>
+                                                <p><strong>Data da Última Atualização:</strong> <?= $noticia->data_ultima_atualizacao ?></p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-sm-12">
                                                 <label for ="Titulo">Título <span class="error">(*)<span></label>
-                                                <?= $this->tag->textField(['titulo', 'width' => '100%', 'class' => 'form-control']) ?>
+                                                <input name="titulo" type="text" value="<?= $noticia->titulo ?>" width='100%' class= "form-control">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-sm-12">
                                                 <label for ="Texto">Texto</label>
-                                                <?= $this->tag->textArea(['texto', 'class' => 'form-control tinymce-editor']) ?>
+                                                <textarea name="texto" class= "form-control"><?= $noticia->texto ?></textarea>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="noticia_id" value="<?= $noticia->id ?>" />
                                     </div>
                                 </div>
                                 <div class="row" style="text-align:right;">

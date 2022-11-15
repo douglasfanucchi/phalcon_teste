@@ -14,6 +14,8 @@ use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Flash\Direct as Flash;
 use Phalcon\Http\Response\Cookies;
 use Phalcon\Crypt;
+use Phalcon\Forms\Manager as FormsManager;
+
 
 /**
  * The FactoryDefault Dependency Injector automatically register the right services providing a full stack framework
@@ -127,5 +129,11 @@ $di->set('crypt', function () {
 
     return $crypt;
 });
+
+$di['forms'] = function() {
+    $manager = new FormsManager();
+    $manager->set('noticia', new NoticiaForm);
+    return $manager;
+};
 
 //$di->set('contasEmail', require realpath('../app/config/email.php'));

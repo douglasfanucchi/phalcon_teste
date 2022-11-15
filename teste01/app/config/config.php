@@ -6,8 +6,8 @@ return new \Phalcon\Config(array(
     'database' => array(
         'adapter'     => 'Mysql',
         'host'        => 'localhost',
-        'username'    => 'phalcont_teste01',
-        'password'    => 'Ph01al98!@#',
+        'username'    => 'dev',
+        'password'    => 'dev',
         'dbname'      => 'phalcont_teste01',
         'charset'     => 'utf8',
     ),
@@ -18,7 +18,8 @@ return new \Phalcon\Config(array(
         'viewsDir'       => APP_PATH . '/app/views/',
         'pluginsDir'     => APP_PATH . '/app/plugins/',
         'libraryDir'     => APP_PATH . '/app/library/',
+        'formsDir'       => APP_PATH . '/app/forms/',
         'cacheDir'       => APP_PATH . '/app/cache/',
-        'baseUri'        => '/teste01/',
+        'baseUri'        => '/teste_phalconphp/teste01/',
     )
 ));
